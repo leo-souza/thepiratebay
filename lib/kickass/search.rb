@@ -10,7 +10,7 @@ module Kickass
     def initialize(query, page = 0, sort_by = 99, category = 0)
 
       query = URI.escape(query)
-      doc = Nokogiri::HTML(open("http://kickass.to/usearch/#{query}/?field=seeders&sorder=desc"))
+      doc = Nokogiri::HTML(open("http://kickass.to/usearch/#{query}/?field=seeders&sorder=desc").read)
       torrents = []
 
       doc.css('table.data:not(.font12px)').first.css('tr').each do |row|
